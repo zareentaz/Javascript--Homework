@@ -7,30 +7,8 @@ var tbody = d3.select("tbody");
 // Console.log the weather data from data.js
 console.log(data);
 
-
-
-
-// YOUR CODE HERE!
-
-data.forEach(function(Alliendata){
-    console.log(Alliendata);
-
-    //append one table row `tr` for each alliendata object
-    var row=tbody.append("tr");
-
-    //Use `Object.entries` to console.log each alliendata value
-    Object.entries(Alliendata).forEach(function([key, value]) {
-       console.log(key, value);
-
-       //Append a cell to the row for each value
-       var cell = row.append("td");
-       cell.text(value);
-    });
-});
-
-
 // Select the submit button
-var submit = d3.select("#submit");
+var submit = d3.select("#filter-btn");
 
 submit.on("click", function() {
 
@@ -43,17 +21,34 @@ submit.on("click", function() {
   // Get the value property of the input element
   var inputValue = inputElement.property("value");
 
-  console.log(inputValue);
+  var inputcity =d3.select("#cityname");
+
+  var input_city_value = inputcity.property("value");
+
+
+  // filtering the data on the basis of user input
 
   var filteredData = tableData.filter(info => info.datetime === inputValue);
+  var filtercity = tableData.filter(info => info.city === input_city_value);
 
   console.log(filteredData);
+ // console.log(filtercity);
 
-  // First, create an array with just the age values
-  var date = filteredData.map(info => info.datetime);
-
+  
   // Then, select the unordered list element by class name
-  var list = d3.select(".summary");
 
+  //append one table row `tr` for each alliendata object
+  filteredData.forEach(function(Alliendata){
+  
+    var row=tbody.append("tr");
 
+  //Use `Object.entries` to console.log each alliendata value
+   Object.entries(Alliendata).forEach(function([key, value]){
+    // console.log(key, value);
+
+     //Append a cell to the row for each value
+     var cell = row.append("td");
+     cell.text(value);
+    });
+  });
 });
