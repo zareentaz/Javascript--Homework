@@ -32,14 +32,18 @@ submit.on("click", function() {
   var filtercity = tableData.filter(info => info.city === input_city_value);
 
   console.log(filteredData);
- // console.log(filtercity);
+  console.log(filtercity);
 
   
   // Then, select the unordered list element by class name
 
+  
+  // comment to clear the body which giving next search
+  document.getElementsByTagName('tbody')[0].innerHTML = '';
+
   //append one table row `tr` for each alliendata object
   filteredData.forEach(function(Alliendata){
-  
+
     var row=tbody.append("tr");
 
   //Use `Object.entries` to console.log each alliendata value
@@ -50,5 +54,19 @@ submit.on("click", function() {
      var cell = row.append("td");
      cell.text(value);
     });
+  });
+  
+  filtercity.forEach(function(Alliendata){
+
+    var row=tbody.append("tr");
+
+  //Use `Object.entries` to console.log each alliendata value
+   Object.entries(Alliendata).forEach(function([key, value]){
+    // console.log(key, value);
+
+     //Append a cell to the row for each value
+     var cell = row.append("td");
+     cell.text(value);
+   });
   });
 });
