@@ -13,7 +13,7 @@ var submit = d3.select("#filter-btn");
 submit.on("click", function() {
 
     // Prevent the page from refreshing
-  d3.event.preventDefault();
+ d3.event.preventDefault();
 
   // Select the date-input element and get the raw HTML node
   var inputElement = d3.select("#datetime");
@@ -48,7 +48,6 @@ submit.on("click", function() {
 
 
 
-
   // filtering the data on the basis of user input
 
   var filteredData = tableData.filter(info => info.datetime === inputValue);
@@ -65,7 +64,7 @@ submit.on("click", function() {
 
   //append one table row `tr` for each alliendata object
   filteredData.forEach(function(Alliendata){
-
+     
     var row=tbody.append("tr");
 
   //Use `Object.entries` to console.log each alliendata value
